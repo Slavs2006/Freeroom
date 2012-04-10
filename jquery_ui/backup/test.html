@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>freeroom IFMO</title>
+<link href="favicon.ico" rel="icon" type="image/x-icon" />
+<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="description" content="Поиск свободной аудитории в ИТМО">
+<meta name="keywords" content="свободная, аудитория, итмо, свободная, пустой, класс, пустой, ifmo, ifmo, итмо, freeroom, free, room, freeroom">
+<meta name="title" content="freeroom IFMO">
+<meta name="resource-type" content="document">
+<meta name="copyright" content=" nikopie. copyright 2011">
+<link type="text/css" href="css/ui-darkness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+			var resultArray = new Array(300);
+			resultArray[112] = "432, 555, 67/2";
+			resultArray[132] = "432, 555, 67/2";
+			resultArray[114] = "432, 555, 67/2";
+			resultArray[252] = "432, 555, 67/2";
+			resultArray[162] = "432, 555, 67/2";
+			resultArray[246] = "766, 121, 17b";
+			var daySet = new Array("", "Monday", "Tuesday", "Wednesday", "Thuresday", "Friday", "Saturday", "Sunday");
+			var weekSet = new Array("","Odd week", "Even week");
+			var paraSet = new Array("", "1 para", "2 para", "3 para", "4 para", "5 para", "6 para", "7 para");
+			var divAccordion = "<div class=\"accordion\">";
+			var divOpen = "<div>";
+			var divClose = "</div>";
+			var h3Open = "<h3><a href=\"#\">";
+			var h3Close = "</a></h3>";
+			var liOdd = "<li><a href=\"#oddT\">Odd week</a></li>";
+			var liEven = "<li><a href=\"#evenT\">Even week</a></li>";
+			
+			var oddBool = false;
+			var evenBool = false;
+			var dayInsBool = false;
+			var readyTable = "";
+			var Tab = "";
+			for (var i=1;i<3;i++)
+			{
+				for (var j=1;j<8;j++)
+				{
+					for (var k=1;k<8;k++)
+					{
+						if (resultArray[i*100+j*10+k])
+						{
+							//alert(data[i*100+j*10+k] + "   ID = " + i+j+k);
+							if (i==1 && oddBool==false) 
+							{
+								oddBool=true;
+								$("#mainUl").append(liOdd);
+							}
+							else if (i==2 && evenBool==false) 
+							{
+								evenBool=true;
+								$("#mainUl").append(liEven);
+							}
+							if (dayInsBool==false) 
+							{
+								dayInsBool=true;
+								//формирую строку с добавлением дня
+								readyTable = readyTable + h3Open + daySet[j] + h3Close + divOpen + divAccordion + h3Open + paraSet[k] + h3Close + divOpen + divClose;
+								//проверить в какую неделю добавлять день #evenT или #oddT
+							}
+							else 
+							{
+								//формирую строку без добавления дня
+								readyTable = readyTable + h3Open + paraSet[k] + h3Close + divOpen + divClose;
+							}
+						}
+					}
+					// add div's day
+					if (dayInsBool==true)
+					{
+						readyTable = readyTable + divClose + divClose;
+						dayInsBool=false;
+					}
+				}
+				if (readyTable!="")
+				{
+					readyTable = divAccordion + readyTable + divClose;
+					Tab = oddBool?"#oddT":"#evenT";
+					$(Tab).append(readyTable);
+				}
+				alert(readyTable);
+				// добавляем строку в табс недели
+				Tab = "";
+				readyTable = "";
+				oddBool = false;
+				evenBool = false;
+			}
+			
+			$("[id$='Tabs']").tabs();
+			$("[class='accordion']").accordion({
+				autoHeight: false,
+				navigation: true,
+				collapsible: true
+			});
+		});
+
+</script>
+</head>
+<body>
+<div id="mainDivTabs">
+	<ul id="mainUl">
+		
+	</ul>
+	<div id="oddT">
+		
+	</div>
+	<div id="evenT">
+		
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+.button{
+	font:16px 'Myriad Pro',Arial,Helvetica,sans-serif;
+
+	/* A semi-transparent text shadow */
+	text-shadow:1px 1px 0 rgba(255,255,255,0.4);
+	
+	/* Overriding the default underline styling of the links */
+	text-decoration:none !important;
+	white-space:nowrap;
+	
+	display:inline-block;
+	vertical-align:baseline;
+	position:relative;
+	cursor:pointer;
+	padding:10px 20px;
+	
+	background-repeat:no-repeat;
+
+	/* The following two rules are fallbacks, in case
+	   the browser does not support multiple backgrounds. */
+
+	background-position:bottom left;
+
+	
+	/* Multiple backgrounds version. The background images
+	   are defined individually in color classes */
+	
+	background-position:bottom left, top right, 0 0, 0 0;
+	background-clip:border-box;
+	
+	/* Applying a default border raidus of 8px */
+	
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	
+	/* A 1px highlight inside of the button */
+	
+	-moz-box-shadow:0 0 1px #fff inset;
+	-webkit-box-shadow:0 0 1px #fff inset;
+	box-shadow:0 0 1px #fff inset;
+	
+	/* Animating the background positions with CSS3 */
+	/* Currently works only in Safari/Chrome */
+	
+}
+
+.button:hover{
+	
+	/* The first rule is a fallback, in case the browser
+	   does not support multiple backgrounds
+	*/
+	
+	background-position:top left;
+	background-position:top left, bottom right, 0 0, 0 0;
+}
+
+.button:active{
+	/* Moving the button 1px to the bottom when clicked */
+	bottom:-1px;
+}
+
+/* The three buttons sizes */
+
+.button.big		{ font-size:30px;}
+.button.medium	{ font-size:18px;}
+.button.small	{ font-size:16px;}
+
+/* A more rounded button */
+
+.button.rounded{
+	-moz-border-radius:4em;
+	-webkit-border-radius:4em;
+	border-radius:4em;
+}
+
+
+/* Defining four button colors */
+
+
+
+/* Orange Button */
+
+.orange.button{
+	color:#693e0a !important;
+//	color:#fff;
+	border:1px solid #bea280 !important;	
+	background-color: #ff7518;
+	margin-top: 2px;
+//	background-image:url('button_bg.png'), url('button_bg.png'), -moz-radial-gradient(center bottom, circle, rgba(232,189,45,1) 0,rgba(232,189,45,0) 100px),-moz-linear-gradient(#f1982f, #d4821f);
+	background-image:url('button_bg.png'), url('button_bg.png'), -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 100, from(rgba(255,117,24,1)), to(rgba(255,117,24,0))),-webkit-gradient(linear, 0% 0%, 0% 100%, from(#ff7518), to(#ff7518));
+}
+
+.orange.button:hover{
+	background-color:#ff7518;
+//	background-image:url('button_bg.png'), url('button_bg.png'), -moz-radial-gradient(center bottom, circle, rgba(241,192,52,1) 0,rgba(241,192,52,0) 100px),-moz-linear-gradient(#f9a746, #e18f2b);
+	background-image:url('button_bg.png'), url('button_bg.png'), -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 100, from(rgba(241,192,52,1)), to(rgba(241,192,52,0))),-webkit-gradient(linear, 0% 0%, 0% 100%, from(#f9a746), to(#e18f2b));
+}
+
