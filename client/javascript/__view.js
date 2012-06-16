@@ -4,4 +4,5 @@ function viewOfMaps () {
 	//2. 
 }
 
-// all other views are part of the jQueryUI...
+! write view activators to all jqueryUI toolbars !
+

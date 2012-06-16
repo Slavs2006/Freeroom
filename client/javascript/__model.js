@@ -11,7 +11,7 @@ function modelOfCalendarAndTime () {
 
 function modelOfIndividualShedule () {
 	//0. constructor = getIndividualShedule() + getEvent()
-	//1. getIndividualShedule = function of AJAX (aud, week1, week2). return individual shedule of selected aud.
+	//1. getIndividualShedule = function of AJAX (aud, week1, week2). return HTML of individual shedule of selected aud.
 	//2. getEvent = function of AJAX (date, pare, aud). return HTML of event at selected day+pare
 	//3. showOrder = function (...pre-set of parametrs to fill order's field ...). fill field of orderMenuWindow
 	//4. checkOrderParametrs = function (). validate paametrs of order. (? AJAX to check on server complicated parametrs, or only client checker ?)
@@ -22,8 +22,9 @@ function modelOfIndividualShedule () {
 }
 
 function modelOfUserRequests () {
-	//0. constructor = getAllActualRequest(date). return HTML of actual request for this user.
-	//1. addNewRequest = function (htmlOfRequest). add new request to userRequestList. ? sortAllRequest() ?
-	//2. ? sortAllRequest = function (). sort all request ?
-	//3. 
+	//0. constructor = getAllActualRequest()
+	//1. getAllActualRequest = function of AJAX (date). return HTML of actual request for this user.
+	//2. addNewRequest = function (htmlOfRequest). add new request to userRequestList.(break accordion. add. create accordion) ? sortAllRequest() ?
+	//3. ? sortAllRequest = function (). sort all request ?
+	//4. 
 }

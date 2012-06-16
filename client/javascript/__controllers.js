@@ -14,7 +14,7 @@ function controllerOfCalendarAndTime () {
 }
 
 function controllerOfIndividualShedule () {
-	//1. bind of all day-cells(change down prepod and pare info by AJAX request)
+	//1. bind of all day-cells = model.getEvent() if day-cell is not free. 
 	//2. bind NEXT
 	//3. bind PREV
 	//4. bind SHOW_ORDER
