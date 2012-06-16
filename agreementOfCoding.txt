@@ -1,0 +1,15 @@
+useThisFormatToFunctionAndVariable
+UseThisFormatToClass
+USE_THIS_FORMAT_TO_CONSTANT
+
+prefix:
+
+s - string
+m - array
+ma - associative array
+d - date
+n - integer number
+f - float number
+_ - incoming parametrs in function
+q - sql query
+tmp - some temporary variable
