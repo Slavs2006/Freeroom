@@ -1,6 +1,10 @@
 <?php
 	session_start();
 	
+	require './HMVC/usersMVC/dispatcherMVC.php';
+	require './HMVC/usersMVC/simpleUserMVC.php';
+	require './HMVC/usersMVC/guestMVC.php';
+	
 	function preprocessingOfLoginAndPass ($_login, $_pass) {
 		...// preprocessing input value and return status of checking. preprocessing = find taboo symbol   ^:)(*-_? etc.
 		return $statusOfPreprocessing; // "OK" and "notOK"
@@ -14,13 +18,13 @@
 	$pass = $_POST['pass'];
 	if (preprocessingOfLoginAndPass($login, $pass) == "notOK") {
 		session_destroy();
-		echo "error";// not simple error. must send file of registration with message of alert...???
+		echo "error";// !!!!! not simple error. must send file of registration with message of alert...???
 	}
 	else {
 		$statusOfUser = checkLoginAndPassInDB($login, $pass);	//in DB should also be kept user with login Guest, empty pass and status guest 
 		if ($statusOfUser == 'invalid') {
 			session_destroy();
-			echo "wrong data"; // same thing...???
+			echo "wrong data"; // !!!!! same thing...???
 		}
 		else {
 			$_SESSION['login'] = $login;
@@ -33,7 +37,7 @@
 				case 'guest':		$_SESSION['controller'] = new GuestMVC;
 									break;
 				default:			session_destroy();
-									echo 'Who is this guy?'; // same thing....?????????
+									echo 'Who is this guy?'; // !!!!! same thing....?????????
 									break;
 			}
 			echo $_SESSION['controller']->$viewOfUser->initUserInterfaceInHtml();
