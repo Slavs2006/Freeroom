@@ -4,7 +4,7 @@ USE_THIS_FORMAT_TO_CONSTANT
 
 prefix:
 
-s - string
+s - string	
 m - array
 ma - associative array
 d - date
