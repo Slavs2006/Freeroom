@@ -2,9 +2,7 @@
 
 //2. getEvent = function of AJAX (date, pare, aud). return HTML of event at selected day+pare
 
-class Event {
-	//[prepodName] => [val], [prepodFam] => [val], ... 
-}
+require_once '../componentsOfUsersMVC/EventClass.php';
 
 class ControllerOfEvent {
 	function ControllerOfEvent () {

@@ -6,14 +6,7 @@
 					// if OK also return HTML from server and call modelOfUserRequests.addNewRequest()
 					// else say some attention message "Your request is suck. try again.."
 
-class Request {
-	//maybe some constructor ?  from sqlQuery format convert... ? 
-	var $beginTime;
-	var $endTime;
-	var $status
-	...
-	
-}
+require_once '../componentsOfUsersMVC/RequestClass.php';
 
 class ControllerOfUserRequest {
 	function ControllerOfUserRequest () {	
@@ -29,8 +22,8 @@ class ModelOfUserRequest {
 	function ModelOfUserRequest () {
 	
 	}
-	function initActualRequests ($_date) {
-		...
+	function initActualUserRequests ($_date) {
+		...// use $_SESSION['login']
 		$this->$arrOfActualRequests = $someArrOfAllActualRequest;// [0] => [RequestObj], [1] => [RequestObj], ... class Request in "userRequestMainMVC.php"
 	}
 	function addNewRequest ($_newRequest) {	//RequestObj
@@ -54,6 +47,7 @@ class ViewOfUserRequest {
 		...
 		return $viewOfNewRequestInHtml;
 	}
+	
 	
 	//another variants of view...
 	

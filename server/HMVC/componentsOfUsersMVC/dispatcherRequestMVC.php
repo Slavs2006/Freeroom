@@ -1,0 +1,51 @@
+<?php
+
+//1. HTML list af all users actual request = function of AJAX(_date)
+//2. Move request = function of AJAX(_acceptOrDenieVariable)
+//all changes in client view make js. he thust say to server where move. 
+//and if get "OK" status then destroy accordion, cut html and do all neccecury transformations
+
+require_once '../componentsOfUsersMVC/RequestClass.php';
+
+class ControllerOfDispatcherRequest {
+	function ControllerOfDispatcherRequest () {	
+		$this->$modelOfDispatcherRequest = new ModelOfDispatcherRequest;
+		$this->$viewOfDispatcherRequest = new ViewOfDispatcherRequest;
+	}
+	
+	var $modelOfDispatcherRequest;
+	var $viewOfDispatcherRequest;
+}
+
+class ModelOfDispatcherRequest {
+	function ModelOfDispatcherRequest () {
+	
+	}
+	function initActualRequestsOfAllUsers ($_date) {
+		...
+		$this->$arrOfActualRequestsOfAllUsers = $someArrOfAllActualRequest;// [0] => [RequestObj], [1] => [RequestObj], ... class Request in "userRequestMainMVC.php"
+	}
+	function moveRequest($idOfRequest, $directionOfMoving) {
+		...
+		return $statusOfMoving;
+	}
+	
+	var $arrOfActualRequestsOfAllUsers;
+}
+
+class ViewOfDispatcherRequest {
+	function ViewOfDispatcherRequest () {
+	
+	}
+	function buildHtmlRequestList ($_arrOfActualRequests) { // [0] => [RequestObj], [1] => [RequestObj], ...
+		...
+		return $viewOfActualRequestInHtml;
+	}	
+	
+	//another variants of view...
+	
+}
+
+
+
+?>

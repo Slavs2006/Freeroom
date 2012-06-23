@@ -2,12 +2,7 @@
 
 //1. getIndividualShedule = function of AJAX (aud, week1, week2). return HTML of individual shedule of selected aud.
 
-class DateParaAud {
-	var $date;
-	var $pare;
-	var $aud;
-	var $status;
-}
+require_once '../componentsOfUsersMVC/DateParaAudClass.php';
 
 class ControllerOfIndividualShedule {
 	function ControllerOfIndividualShedule () {
@@ -35,7 +30,11 @@ class ViewOfIndividualShedule {
 	function ViewOfIndividualShedule () {
 	
 	}
-	function buildHtmlIndividualShedule ($_assArrayOfIndividualShedule) {
+	function buildHtmlIndividualSheduleForUser ($_assArrayOfIndividualShedule) {
+		...
+		return $htmlOfIndividualShedule;
+	}
+	function buildHtmlIndividualSheduleForGuest ($_assArrayOfIndividualShedule) {
 		...
 		return $htmlOfIndividualShedule;
 	}
