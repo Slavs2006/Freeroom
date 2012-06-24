@@ -29,6 +29,10 @@ class ModelOfDispatcherRequest {
 		...
 		return $statusOfMoving;
 	}
+	function addNewRequest ($_newRequest) {	//RequestObj
+		...// add new requst in DB tableOfAccepted
+		return $statusMessage;
+	}
 	
 	var $arrOfActualRequestsOfAllUsers;
 }
@@ -41,6 +45,14 @@ class ViewOfDispatcherRequest {
 		...
 		return $viewOfActualRequestInHtml;
 	}	
+	function buildHtmlOfNewRequest ($_newRequest)
+		...
+		return $viewOfNewRequestInHtml;
+	}
+	function buildHtmlOfRequestInputInterface () {
+		...
+		return $viewOfRequestInputInterfaceInHtml;
+	}
 	
 	//another variants of view...
 	

@@ -47,6 +47,10 @@ class ViewOfUserRequest {
 		...
 		return $viewOfNewRequestInHtml;
 	}
+	function buildHtmlOfRequestInputInterface () {
+		...
+		return $viewOfRequestInputInterfaceInHtml;
+	}
 	
 	
 	//another variants of view...

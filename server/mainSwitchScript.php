@@ -108,9 +108,22 @@
 					echo 'undefined behaviour';
 				}
 				break;
-				
+			case 'newRequest':
+				$newRequest = new Request(...)// construct $newRequest = object from $_POST[''] parametrs...
+				$statusOfAdd = $_SESSION['controller']->$controllerOfDispatcherRequest->addNewRequest($newRequest);
+				if ($statusOfAdd == 'notOk') {
+					echo 'cannot add newRequest';
+				}
+				else if ($statusOfAdd == 'ok'){
+					$newRequestViewInHtml = $_SESSION['controller']->$controllerOfUserRequest->$viewOfUserRequest->buildHtmlOfNewRequest($newRequest);
+					echo $newRequestViewInHtml;
+				}
+				else {
+					echo 'undefined behaviour';
+				}
+				break;
 			default: 
-				echo 'Simple user cannot do it...who r u? -_-';
+				echo 'Dispatcher cannot do it...who r u? -_-';
 				break;
 		}
 	}
