@@ -8,8 +8,8 @@
 	if ($_SESSION['status'] == 'guest') {
 		switch ($_POST['command']) {
 			case 'renewMaps': 
-				$aFreeAuds = $_SESSION['controller']->$controllerOfMaps->$modelOfMaps->getFreeAuds($_POST['date'], $_POST['pare']);
-				echo $aFreeAuds;
+				$aFreeAndReservedAuds = $_SESSION['controller']->$controllerOfMaps->$modelOfMaps->getFreeAndReservedAuds($_POST['date'], $_POST['pare']);
+				echo $aFreeAndReservedAuds;
 				break;
 			case 'getIndividualShedule':
 				$_SESSION['controller']->$controllerOfIndividualShedule->$modelOfIndividualShedule->$initIndividualShedule($_POST['aud'], $_POST['week1'], $_POST['week2']);
@@ -32,8 +32,8 @@
 	else if ($_SESSION['status'] == 'simpleUser') {
 		switch ($_POST['command']) {
 			case 'renewMaps': 
-				$aFreeAuds = $_SESSION['controller']->$controllerOfMaps->$modelOfMaps->getFreeAuds($_POST['date'], $_POST['pare']);
-				echo $aFreeAuds;
+				$aFreeAndReservedAuds = $_SESSION['controller']->$controllerOfMaps->$modelOfMaps->getFreeAndReservedAuds($_POST['date'], $_POST['pare']);
+				echo $aFreeAndReservedAuds;
 				break;
 			case 'getIndividualShedule':
 				$_SESSION['controller']->$controllerOfIndividualShedule->$modelOfIndividualShedule->$initIndividualShedule($_POST['aud'], $_POST['week1'], $_POST['week2']);

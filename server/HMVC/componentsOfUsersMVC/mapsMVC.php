@@ -21,9 +21,9 @@ class ModelOfMaps {
 		...
 		$this->$assArrayPathAndNames = $queryAssArray;
 	}
-	function getFreeAuds ($_date, $_pare) {
+	function getFreeAndReservedAuds ($_date, $_pare) {
 		...
-		return $setOfFreeAuds;
+		return $setOfFreeAndReservedAuds;
 	}
 	
 	var $currentAdress;
