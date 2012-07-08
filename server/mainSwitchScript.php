@@ -20,7 +20,7 @@
 				break;
 			case 'getEvent':
 				$eventInHtmlView = $_SESSION['controller']->$controllerOfEvent->$viewOfEvent->buildHtmlView(
-					$_SESSION['controller']->$controllerOfEvent->$modelOfEvent->getEvent($_POST['data'], $_POST['para'], $_POST['aud']) 
+					$_SESSION['controller']->$controllerOfEvent->$modelOfEvent->getEvent($_POST['data'], $_POST['para'], $_POST['aud'], $_POST['status']) 
 				);
 				echo $eventInHtmlView;
 				break;
@@ -44,7 +44,7 @@
 				break;
 			case 'getEvent':
 				$eventInHtmlView = $_SESSION['controller']->$controllerOfEvent->$viewOfEvent->buildHtmlView(
-										$_SESSION['controller']->$controllerOfEvent->$modelOfEvent->getEvent($_POST['date'], $_POST['para'], $_POST['aud']) 
+										$_SESSION['controller']->$controllerOfEvent->$modelOfEvent->getEvent($_POST['date'], $_POST['para'], $_POST['aud'], $_POST['status']) 
 									);
 				echo $eventInHtmlView;
 				break;
@@ -85,7 +85,7 @@
 				break;
 			case 'getEvent':
 				$eventInHtmlView = $_SESSION['controller']->$controllerOfEvent->$viewOfEvent->buildHtmlView(
-										$_SESSION['controller']->$controllerOfEvent->$modelOfEvent->getEvent($_POST['date'], $_POST['para'], $_POST['aud']) 
+										$_SESSION['controller']->$controllerOfEvent->$modelOfEvent->getEvent($_POST['date'], $_POST['para'], $_POST['aud'], $_POST['status']) 
 									);
 				echo $eventInHtmlView;
 				break;

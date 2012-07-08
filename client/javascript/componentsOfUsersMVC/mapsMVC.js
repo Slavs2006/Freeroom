@@ -40,8 +40,8 @@ function ControllerOfMaps (_date, _pare) {
 function ModelOfMaps () {
 	this.getFreeAndReservedAuds = function(_date, _pare) {	//2. getFreeAndReservedAuds = function of AJAX (date, pare). return new currentFreeAndReservedAuds
 		$.ajax({
-				type: "POST",
 				url: "server/mainSwitchScript.php",
+				type: "POST",
 				data: ({command : 'renewMaps', date : _date, pare : _pare}),
 				dataType: "json",
 				success: function(data)
