@@ -1,4 +1,4 @@
-function ControllerOfMaps () {
+function ControllerOfMaps (_date, _pare) {
 	this.bindAllAudsOnAllMaps = function () {	//1. bind of all auds on maps to show onClick individualShedule of clicked auds
 		for (var floorNumber = 1; floorNumber < 7; floorNumber++) {
 			var svgdom = document.getElementById(floorNumber + "floorSVG").getSVGDocument();
@@ -20,26 +20,25 @@ function ControllerOfMaps () {
 			var curNumber = $(this).index() + 1;
 			$(this).addClass('current').siblings().removeClass('current');
 			showAndHideMaps(curNumber, pevNumber);
+			this.modelOfMaps.currentSelectedFloor = curNumber;
 		});
 	}
 	
 	this.renewAllMaps = function(_date, _pare) {
-		this.modelOfMaps->getFreeAndReservedAuds(date, pare);
-		this.viewOfMaps->paintAllMaps(this.modelOfMaps->currentFreeAndReservedAuds);
+		this.modelOfMaps.getFreeAndReservedAuds(date, pare);
+		this.viewOfMaps.paintAllMaps(this.modelOfMaps.currentFreeAndReservedAuds);
 	}
 	
+	//constructor:
 	this.modelOfMaps = new ModelOfMaps();
 	this.viewOfMaps = new ViewOfMaps();
-	
-	
+	this.bindAllAudsOnAllMaps();
+	this.bindAllFloorSelectors();
+	this.renewAllMaps(_date, _pare);
 }
 
 function ModelOfMaps () {
-	this.currentFreeAndReservedAuds; // assoc array: key = audNumber, val = audStatus {free|busy}
-	//0. constructor = getFreeAndReservedAuds() 
-	//1. service functions of selecting floor
-	//2. getFreeAndReservedAuds = function of AJAX (date, pare). return new currentFreeAndReservedAuds
-	this.getFreeAndReservedAuds = function(_date, _pare) {
+	this.getFreeAndReservedAuds = function(_date, _pare) {	//2. getFreeAndReservedAuds = function of AJAX (date, pare). return new currentFreeAndReservedAuds
 		$.ajax({
 				type: "POST",
 				url: "server/mainSwitchScript.php",
@@ -53,11 +52,13 @@ function ModelOfMaps () {
 				//write exceptions...
 		})	
 	}
+	
+	//constructor:
+	this.currentFreeAndReservedAuds = []; // assoc array: key = audNumber, val = audStatus {free|busy}
+	this.currentSelectedFloor = 1;
 }
 
 function ViewOfMaps () {
-	//0. constructor = paintAllMaps(someSet), hideAllMaps(), showAndHideMaps(1)
-	this.currentSelectedFloor;
 	this.paintAllMaps = function (_setOfFreeAndReservedAuds) {//1. paintAllMaps = function (model.currentFreeAndReservedAuds). paint all maps with current set of free auds
 		for (var curAud in _setOfFreeAndReservedAuds) {
 			for (var floorNumber = 1, checkStatus = false; checkStatus == false && floorNumber < 7; floorNumber++) {
@@ -92,7 +93,6 @@ function ViewOfMaps () {
 	}
 	this.showAndHideMaps = function (_numOfShownMap, _numOfHiddenMap = 0) {
 		$("#" + _numOfShownMap + "floorSVG").removeClass("hide").addClass("show");
-		this.currentSelectedFloor = _numOfShownMap;
 		if (_numOfHiddenMap != 0) {
 			$("#" + _numOfHiddenMap + "floorSVG").removeClass("show").addClass("hide");
 		}
@@ -101,7 +101,10 @@ function ViewOfMaps () {
 		for (var floorNumber = 1; floorNumber < 7; floorNumber++) {
 			$("#" + floorNumber + "floorSVG").removeClass("show").addClass("hide");
 		}
-		this.currentSelectedFloor = 0;
 	}
+	
+	//constuctor:
+	this.hideAllMaps();
+	this.showAndHideMaps(1);
 }
 
