@@ -3,6 +3,7 @@
 //2. getEvent = function of AJAX (date, pare, aud, status). return HTML of event at selected day+pare
 
 require_once '../componentsOfUsersMVC/EventClass.php';
+require_once '../../connection.php'
 
 class ControllerOfEvent {
 	function ControllerOfEvent () {
@@ -19,15 +20,18 @@ class ModelOfEvent {
 		
 	}
 	function tableNameFromDate($_date) {
-		// construct table name from date
+		...// construct table name from date
 		return $oddOrEven.'_'.$dayOfWeek;
 	}
 	function getEvent($_date, $_pare, $_aud, $_status) {
 		$findedEvent = new Event;
 		
+		openConnection();
+		
 		$queryAuditoryIdSelect = mysql_query("SELECT id_aud FROM auditory WHERE nummer_aud='".$_aud."' and id_adress='1'");
 		$idAuditory = mysql_fetch_assoc($query);
 		if (!$idAuditory) {
+			closeConnection();
 			return 	$findedEvent; // WTF ???
 		}
 		$idAuditory = $idAuditory['id_aud'];
@@ -37,22 +41,26 @@ class ModelOfEvent {
 								break;
 			case 'constant' :	$tableNameForQuery = tableNameFromDate($_date);//from shedule
 								break;
-			default :			return 	$findedEvent; // WTF ???
+			default :			closeConnection();
+								return 	$findedEvent; // WTF ???
 		}
 		
 		$queryInfoAboutPara = mysql_query("SELECT * FROM ".$tableNameForQuery." WHERE id_adress='1' and nummer_paar='".$_pare."' and id_aud='".$idAuditory."'");
 		$fInfoAboutPara = mysql_fetch_assoc($queryInfoAboutPara);
 		if (!$fInfoAboutPara) {
+			closeConnection();
 			return 	$findedEvent; // WTF ???
 		}
 		
 		$queryInfoPrepod = mysql_query("SELECT * FROM prep WHERE id_prep='".$fInfoAboutPara['id_prepod']."'");
 		$fInfoPrepod = mysql_fetch_assoc($queryInfoPrepod);
 		if (!$fInfoPrepod) {
+			closeConnection();
 			return 	$findedEvent; // WTF ???
 		}
+		
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//! restruct all db table of shedule (omeTimeReserved and constantShedulle) to some ONE type of naming next fields : !
+		//! restruct all db table of shedule (oneTimeReserved and constantShedulle) to some ONE type of naming next fields : !
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 		$findedEvent->$prepodName = iconv("cp1251","utf-8",$fInfoPrepod['name']);
@@ -67,7 +75,8 @@ class ModelOfEvent {
 		$findedEvent->$dateOfAction = $_date;
 		$findedEvent->$pareOfAction = $_pare;
 		$findedEvent->$listeners = iconv("cp1251","utf-8",$fInfoAboutPara['reservAudience']);
-	
+		
+		closeConnection();
 		return $findedEventObj; //Event class discripted above ^
 	}
 }
@@ -76,8 +85,39 @@ class ViewOfEvent {
 	function ViewOfEvent () {
 		
 	}
-	function buildHtmlView ($_eventObj) {
-		...//construct html of event
+	function buildHtmlView ($_eventObj) {//construct html of event
+		$viewOfEventInHtml .= "<br>";
+		$viewOfEventInHtml .= "<br><table border style='color:white;width:50%;' cellpadding = '0' cellspacing = '0'>";
+		$viewOfEventInHtml .= "<tr>";
+		$viewOfEventInHtml .= "<td rowspan=4>";
+		$viewOfEventInHtml .= "<img src='".$_eventObj->$prepodPhoto."' />";
+		$viewOfEventInHtml .= "</td>";
+		$viewOfEventInHtml .= "</tr>";
+		$viewOfEventInHtml .= "<tr>";
+		$viewOfEventInHtml .= "<td>";
+		$viewOfEventInHtml .= "Преподаватель";
+		$viewOfEventInHtml .= "</td>";
+		$viewOfEventInHtml .= "<td>";
+		$viewOfEventInHtml .= $_eventObj->$prepodFam." ".$_eventObj->$prepodName." ".$_eventObj->$prepodOtch;
+		$viewOfEventInHtml .= "</td>";
+		$viewOfEventInHtml .= "</tr>";
+		$viewOfEventInHtml .= "<tr>";
+		$viewOfEventInHtml .= "<td>";
+		$viewOfEventInHtml .= "Предмет";
+		$viewOfEventInHtml .= "</td>";
+		$viewOfEventInHtml .= "<td>";
+		$viewOfEventInHtml .= $_eventObj->$nameOfAction;
+		$viewOfEventInHtml .= "</td>";
+		$viewOfEventInHtml .= "</tr>";
+		$viewOfEventInHtml .= "<tr>";
+		$viewOfEventInHtml .= "<td>";
+		$viewOfEventInHtml .= "Группа";
+		$viewOfEventInHtml .= "</td>";
+		$viewOfEventInHtml .= "<td>";
+		$viewOfEventInHtml .= $_eventObj->$listeners;;
+		$viewOfEventInHtml .= "</td>";
+		$viewOfEventInHtml .= "</tr>";
+		$viewOfEventInHtml .= "</table>";
 		return $viewOfEventInHtml;
 	}
 	
