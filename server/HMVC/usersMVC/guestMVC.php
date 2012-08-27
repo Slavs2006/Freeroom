@@ -1,21 +1,23 @@
-<?php
+﻿<?php
 
-require_once '../componentsOfUsersMVC/mapsMVC.php';
-require_once '../componentsOfUsersMVC/eventMVC.php';
-require_once '../componentsOfUsersMVC/individualSheduleMVC.php';
+require_once './HMVC/usersMVC/freeroomUserInterface.php';
+
+require_once './HMVC/componentsOfUsersMVC/mapsMVC.php';
+require_once './HMVC/componentsOfUsersMVC/eventMVC.php';
+require_once './HMVC/componentsOfUsersMVC/individualSheduleMVC.php';
 
 class ControllerOfGuest {
-	function ControllerOfGuest () {
-		$this->$modelOfGuest = new ModelOfGuest;
-		$this->$viewOfGuest = new ViewOfGuest;
+	function __construct () {
+		$this->model = new ModelOfGuest;
+		$this->view = new ViewOfGuest;
 		
-		$this->$controllerOfMaps = new ControllerOfMaps;
-		$this->$controllerOfIndividualShedule = new ControllerOfIndividualShedule;
-		$this->$controllerOfEvent = new ControllerOfEvent;
+		$this->controllerOfMaps = new ControllerOfMaps;
+		$this->controllerOfIndividualShedule = new ControllerOfIndividualShedule;
+		$this->controllerOfEvent = new ControllerOfEvent;
 	}
 	
-	var $modelOfGuest;
-	var $viewOfGuest;
+	var $model;
+	var $view;
 	
 	var $controllerOfMaps;
 	var $controllerOfIndividualShedule;
@@ -23,18 +25,18 @@ class ControllerOfGuest {
 }
 
 class ModelOfGuest {
-	function ModelOfGuest () {
+	function __construct () {
 		
 	}
 	
 }
 
-class ViewOfGuest {
-	function ViewOfGuest () {
+class ViewOfGuest implements freeroomUser {
+	function __construct () {
 		
 	}
-	function buildGuestViewInHtml () {
-		...// build all page whith meta-tags and necessary javascripts. Also use viewOfMaps to build maps and floor selector
+	public function createUserInterfaceInHtml () {
+		// build all page whith meta-tags and necessary javascripts. Also use viewOfMaps to build maps and floor selector
 		return $guestViewInHtml;
 	}
 	

@@ -1,21 +1,23 @@
-<?php
+﻿<?php
 
-require_once '../componentsOfUsersMVC/dispatcherRequestMVC.php';
-require_once '../componentsOfUsersMVC/eventMVC.php';
-require_once '../componentsOfUsersMVC/individualSheduleMVC.php';
+require_once './HMVC/usersMVC/freeroomUserInterface.php';
+
+require_once './HMVC/componentsOfUsersMVC/eventMVC.php';
+require_once './HMVC/componentsOfUsersMVC/dispatcherRequestMVC.php';
+require_once './HMVC/componentsOfUsersMVC/individualSheduleMVC.php';
 
 class ControllerOfDispatcher {
-	function ControllerOfDispatcher () {
-		$this->$modelOfDispatcher = new ModelOfDispatcher;
-		$this->$viewOfDispatcher = new ViewOfDispatcher;
+	function __construct () {
+		$this->model = new ModelOfDispatcher;
+		$this->view = new ViewOfDispatcher;
 		
-		$this->$controllerOfDispatcherRequest = new ControllerOfDispatcherRequest;
-		$this->$controllerOfIndividualShedule = new ControllerOfIndividualShedule;
-		$this->$controllerOfEvent = new ControllerOfEvent;
+		$this->controllerOfDispatcherRequest = new ControllerOfDispatcherRequest;
+		$this->controllerOfIndividualShedule = new ControllerOfIndividualShedule;
+		$this->controllerOfEvent = new ControllerOfEvent;
 	}
 	
-	var $modelOfDispatcher;
-	var $viewOfDispatcher;
+	var $model;
+	var $view;
 	
 	var $controllerOfDispatcherRequest;
 	var $controllerOfIndividualShedule;
@@ -29,12 +31,12 @@ class ModelOfDispatcher {
 	
 }
 
-class ViewOfDispatcher {
+class ViewOfDispatcher implements freeroomUser {
 	function ViewOfDispatcher () {
 		
 	}
-	function buildDispatcherViewInHtml () {
-		...// build all page whith meta-tags and necessary javascripts. Also use mapsView and userRequestView.
+	public function createUserInterfaceInHtml () {
+		// build all page whith meta-tags and necessary javascripts. Also use mapsView and userRequestView.
 		return $DispatcherViewInHtml;
 	}
 	

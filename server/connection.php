@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 function openConnection () {
 	$Link = mysql_connect('localhost','root','');
@@ -9,7 +9,7 @@ function openConnection () {
 }
 
 function closeConnection () {
-	...//??
+	//??
 }
 		
 ?>

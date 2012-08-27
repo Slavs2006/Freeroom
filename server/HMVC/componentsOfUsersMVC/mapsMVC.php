@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 
 //2. getFreeAuds = function of AJAX (date, pare). return new currentFreeAuds
 
 class ControllerOfMaps {
-	function ControllerOfMaps () {
-		$this->$modelOfMaps = new ModelOfMaps;
-		$this->$viewOfMaps = new ViewOfMaps;
+	function __construct () {
+		$this->modelOfMaps = new ModelOfMaps;
+		$this->viewOfMaps = new ViewOfMaps;
 	}
 	
 	var $modelOfMaps;
@@ -13,16 +13,16 @@ class ControllerOfMaps {
 }
 
 class ModelOfMaps {
-	function ModelOfMaps () {
+	function __construct () {
 		
 	}
 	function initNamesAndFilesPathOfMaps ($_adress) {
-		$this->$currentAdress = $_adress;
-		...
-		$this->$assArrayPathAndNames = $queryAssArray;
+		$this->currentAdress = $_adress;
+		//...
+		$this->assArrayPathAndNames = $queryAssArray;
 	}
 	function getFreeAndReservedAuds ($_date, $_pare) {
-		...
+		//...
 		return $setOfFreeAndReservedAuds;
 	}
 	
@@ -31,11 +31,11 @@ class ModelOfMaps {
 }
 
 class ViewOfMaps {
-	function ViewOfMaps () {
+	function __construct () {
 		
 	}
 	function buildHtmlView ($_assArrayPathAndNames) {
-		...//construct html of svg and part of floor selecting menu
+		//...construct html of svg and part of floor selecting menu
 		return $viewOfMapsInHtml;
 	}
 	

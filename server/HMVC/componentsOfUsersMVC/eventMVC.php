@@ -1,14 +1,14 @@
-<?php
+п»ї<?php
 
 //2. getEvent = function of AJAX (date, pare, aud, status). return HTML of event at selected day+pare
 
-require_once '../componentsOfUsersMVC/EventClass.php';
-require_once '../../connection.php'
+require_once './HMVC/componentsOfUsersMVC/EventClass.php';
+require_once './connection.php';
 
 class ControllerOfEvent {
-	function ControllerOfEvent () {
-		$this->$modelOfEvent = new ModelOfEvent;
-		$this->$viewOfEvent = new ViewOfEvent;
+	function __construct () {
+		$this->modelOfEvent = new ModelOfEvent;
+		$this->viewOfEvent = new ViewOfEvent;
 	}
 	
 	var $modelOfEvent;
@@ -16,11 +16,11 @@ class ControllerOfEvent {
 }
 
 class ModelOfEvent {
-	function ModelOfEvent () {
+	function __construct () {
 		
 	}
 	function tableNameFromDate($_date) {
-		...// construct table name from date
+		//... construct table name from date
 		return $oddOrEven.'_'.$dayOfWeek;
 	}
 	function getEvent($_date, $_pare, $_aud, $_status) {
@@ -82,7 +82,7 @@ class ModelOfEvent {
 }
 
 class ViewOfEvent {
-	function ViewOfEvent () {
+	function __construct () {
 		
 	}
 	function buildHtmlView ($_eventObj) {//construct html of event
@@ -95,7 +95,7 @@ class ViewOfEvent {
 		$viewOfEventInHtml .= "</tr>";
 		$viewOfEventInHtml .= "<tr>";
 		$viewOfEventInHtml .= "<td>";
-		$viewOfEventInHtml .= "Преподаватель";
+		$viewOfEventInHtml .= "РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ";
 		$viewOfEventInHtml .= "</td>";
 		$viewOfEventInHtml .= "<td>";
 		$viewOfEventInHtml .= $_eventObj->$prepodFam." ".$_eventObj->$prepodName." ".$_eventObj->$prepodOtch;
@@ -103,7 +103,7 @@ class ViewOfEvent {
 		$viewOfEventInHtml .= "</tr>";
 		$viewOfEventInHtml .= "<tr>";
 		$viewOfEventInHtml .= "<td>";
-		$viewOfEventInHtml .= "Предмет";
+		$viewOfEventInHtml .= "РџСЂРµРґРјРµС‚";
 		$viewOfEventInHtml .= "</td>";
 		$viewOfEventInHtml .= "<td>";
 		$viewOfEventInHtml .= $_eventObj->$nameOfAction;
@@ -111,7 +111,7 @@ class ViewOfEvent {
 		$viewOfEventInHtml .= "</tr>";
 		$viewOfEventInHtml .= "<tr>";
 		$viewOfEventInHtml .= "<td>";
-		$viewOfEventInHtml .= "Группа";
+		$viewOfEventInHtml .= "Р“СЂСѓРїРїР°";
 		$viewOfEventInHtml .= "</td>";
 		$viewOfEventInHtml .= "<td>";
 		$viewOfEventInHtml .= $_eventObj->$listeners;;

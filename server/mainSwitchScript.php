@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	session_start();
 	
 	require './HMVC/usersMVC/dispatcherMVC.php';
@@ -8,19 +8,19 @@
 	if ($_SESSION['status'] == 'guest') {
 		switch ($_POST['command']) {
 			case 'renewMaps': 
-				$aFreeAndReservedAuds = $_SESSION['controller']->$controllerOfMaps->$modelOfMaps->getFreeAndReservedAuds($_POST['date'], $_POST['pare']);
+				$aFreeAndReservedAuds = $_SESSION['controller']->controllerOfMaps->modelOfMaps->getFreeAndReservedAuds($_POST['date'], $_POST['pare']);
 				echo $aFreeAndReservedAuds;
 				break;
 			case 'getIndividualShedule':
-				$_SESSION['controller']->$controllerOfIndividualShedule->$modelOfIndividualShedule->$initIndividualShedule($_POST['aud'], $_POST['week1'], $_POST['week2']);
-				$guestIndividualSheduleInHtmlView = $_SESSION['controller']->$controllerOfIndividualShedule->$viewOfIndividualShedule->buildHtmlIndividualSheduleForGuest(
-					$_SESSION['controller']->$controllerOfIndividualShedule->$modelOfIndividualShedule->$assArrayOfIndividualShedule 
+				$_SESSION['controller']->controllerOfIndividualShedule->modelOfIndividualShedule->initIndividualShedule($_POST['aud'], $_POST['week1'], $_POST['week2']);
+				$guestIndividualSheduleInHtmlView = $_SESSION['controller']->controllerOfIndividualShedule->viewOfIndividualShedule->buildHtmlIndividualSheduleForGuest(
+					$_SESSION['controller']->controllerOfIndividualShedule->modelOfIndividualShedule->assArrayOfIndividualShedule 
 				);
 				echo $guestIndividualSheduleView;
 				break;
 			case 'getEvent':
-				$eventInHtmlView = $_SESSION['controller']->$controllerOfEvent->$viewOfEvent->buildHtmlView(
-					$_SESSION['controller']->$controllerOfEvent->$modelOfEvent->getEvent($_POST['data'], $_POST['para'], $_POST['aud'], $_POST['status']) 
+				$eventInHtmlView = $_SESSION['controller']->controllerOfEvent->viewOfEvent->buildHtmlView(
+					$_SESSION['controller']->controllerOfEvent->modelOfEvent->getEvent($_POST['data'], $_POST['para'], $_POST['aud'], $_POST['status']) 
 				);
 				echo $eventInHtmlView;
 				break;
@@ -32,37 +32,37 @@
 	else if ($_SESSION['status'] == 'simpleUser') {
 		switch ($_POST['command']) {
 			case 'renewMaps': 
-				$aFreeAndReservedAuds = $_SESSION['controller']->$controllerOfMaps->$modelOfMaps->getFreeAndReservedAuds($_POST['date'], $_POST['pare']);
+				$aFreeAndReservedAuds = $_SESSION['controller']->controllerOfMaps->modelOfMaps->getFreeAndReservedAuds($_POST['date'], $_POST['pare']);
 				echo $aFreeAndReservedAuds;
 				break;
 			case 'getIndividualShedule':
-				$_SESSION['controller']->$controllerOfIndividualShedule->$modelOfIndividualShedule->$initIndividualShedule($_POST['aud'], $_POST['week1'], $_POST['week2']);
-				$guestIndividualSheduleInHtmlView = $_SESSION['controller']->$controllerOfIndividualShedule->$viewOfIndividualShedule->buildHtmlIndividualSheduleForUser(
-														$_SESSION['controller']->$controllerOfIndividualShedule->$modelOfIndividualShedule->$assArrayOfIndividualShedule 
+				$_SESSION['controller']->controllerOfIndividualShedule->modelOfIndividualShedule->initIndividualShedule($_POST['aud'], $_POST['week1'], $_POST['week2']);
+				$guestIndividualSheduleInHtmlView = $_SESSION['controller']->controllerOfIndividualShedule->viewOfIndividualShedule->buildHtmlIndividualSheduleForUser(
+														$_SESSION['controller']->controllerOfIndividualShedule->modelOfIndividualShedule->assArrayOfIndividualShedule 
 													);
 				echo $guestIndividualSheduleView;
 				break;
 			case 'getEvent':
-				$eventInHtmlView = $_SESSION['controller']->$controllerOfEvent->$viewOfEvent->buildHtmlView(
-										$_SESSION['controller']->$controllerOfEvent->$modelOfEvent->getEvent($_POST['date'], $_POST['para'], $_POST['aud'], $_POST['status']) 
+				$eventInHtmlView = $_SESSION['controller']->controllerOfEvent->viewOfEvent->buildHtmlView(
+										$_SESSION['controller']->controllerOfEvent->modelOfEvent->getEvent($_POST['date'], $_POST['para'], $_POST['aud'], $_POST['status']) 
 									);
 				echo $eventInHtmlView;
 				break;
 			case 'getActualRequests':
-				$_SESSION['controller']->$controllerOfUserRequest->$modelOfUserRequest->initActualUserRequests($_POST['date'])
-				$actualRequestsViewInHtml = $_SESSION['controller']->$controllerOfUserRequest->$viewOfUserRequest->buildHtmlRequestList( 
-												$_SESSION['controller']->$controllerOfUserRequest->$modelOfUserRequest->$arrOfActualRequests
+				$_SESSION['controller']->controllerOfUserRequest->modelOfUserRequest->initActualUserRequests($_POST['date'])
+				$actualRequestsViewInHtml = $_SESSION['controller']->controllerOfUserRequest->viewOfUserRequest->buildHtmlRequestList( 
+												$_SESSION['controller']->controllerOfUserRequest->modelOfUserRequest->arrOfActualRequests
 											);
 				echo $actualRequestsViewInHtml;
 				break;
 			case 'newRequest':
 				$newRequest = new Request(...)// construct $newRequest = object from $_POST[''] parametrs...
-				$statusOfAdd = $_SESSION['controller']->$controllerOfUserRequest->addNewRequest($newRequest);
+				$statusOfAdd = $_SESSION['controller']->controllerOfUserRequest->addNewRequest($newRequest);
 				if ($statusOfAdd == 'notOk') {
 					echo 'cannot add newRequest';
 				}
 				else if ($statusOfAdd == 'ok'){
-					$newRequestViewInHtml = $_SESSION['controller']->$controllerOfUserRequest->$viewOfUserRequest->buildHtmlOfNewRequest($newRequest);
+					$newRequestViewInHtml = $_SESSION['controller']->controllerOfUserRequest->viewOfUserRequest->buildHtmlOfNewRequest($newRequest);
 					echo $newRequestViewInHtml;
 				}
 				else {
@@ -77,27 +77,27 @@
 	else if ($_SESSION['status'] == 'dispatcher') {
 		switch ($_POST['command']) {
 			case 'getIndividualShedule':
-				$_SESSION['controller']->$controllerOfIndividualShedule->$modelOfIndividualShedule->$initIndividualShedule($_POST['aud'], $_POST['week1'], $_POST['week2']);
-				$guestIndividualSheduleInHtmlView = $_SESSION['controller']->$controllerOfIndividualShedule->$viewOfIndividualShedule->buildHtmlIndividualSheduleForUser(
-														$_SESSION['controller']->$controllerOfIndividualShedule->$modelOfIndividualShedule->$assArrayOfIndividualShedule 
+				$_SESSION['controller']->controllerOfIndividualShedule->modelOfIndividualShedule->initIndividualShedule($_POST['aud'], $_POST['week1'], $_POST['week2']);
+				$guestIndividualSheduleInHtmlView = $_SESSION['controller']->controllerOfIndividualShedule->viewOfIndividualShedule->buildHtmlIndividualSheduleForUser(
+														$_SESSION['controller']->controllerOfIndividualShedule->modelOfIndividualShedule->assArrayOfIndividualShedule 
 													);
 				echo $guestIndividualSheduleView;
 				break;
 			case 'getEvent':
-				$eventInHtmlView = $_SESSION['controller']->$controllerOfEvent->$viewOfEvent->buildHtmlView(
-										$_SESSION['controller']->$controllerOfEvent->$modelOfEvent->getEvent($_POST['date'], $_POST['para'], $_POST['aud'], $_POST['status']) 
+				$eventInHtmlView = $_SESSION['controller']->controllerOfEvent->viewOfEvent->buildHtmlView(
+										$_SESSION['controller']->controllerOfEvent->modelOfEvent->getEvent($_POST['date'], $_POST['para'], $_POST['aud'], $_POST['status']) 
 									);
 				echo $eventInHtmlView;
 				break;
 			case 'getActualRequestsOfAllUser':
-				$_SESSION['controller']->$controllerOfDispatcherRequest->$modelOfDispatcherRequest->initActualRequestsOfAllUsers($_POST['date'])
-				$actualRequestsOfAllUsersViewInHtml = $_SESSION['controller']->$controllerOfDispatcherRequest->$viewOfDispatcherRequest->buildHtmlRequestList( 
-												$_SESSION['controller']->$controllerOfDispatcherRequest->$modelOfDispatcherRequest->$arrOfActualRequestsOfAllUsers
+				$_SESSION['controller']->controllerOfDispatcherRequest->modelOfDispatcherRequest->initActualRequestsOfAllUsers($_POST['date'])
+				$actualRequestsOfAllUsersViewInHtml = $_SESSION['controller']->controllerOfDispatcherRequest->viewOfDispatcherRequest->buildHtmlRequestList( 
+												$_SESSION['controller']->controllerOfDispatcherRequest->modelOfDispatcherRequest->arrOfActualRequestsOfAllUsers
 											);
 				echo $actualRequestsOfAllUsersViewInHtml;
 				break;
 			case 'moveRequest':
-				$statusOfMoving = $_SESSION['controller']->$controllerOfDispatcherRequest->$modelOfDispatcherRequest->moveRequest($_POST['idOfRequest'], $_POST['$directionOfMoving']);
+				$statusOfMoving = $_SESSION['controller']->controllerOfDispatcherRequest->modelOfDispatcherRequest->moveRequest($_POST['idOfRequest'], $_POST['$directionOfMoving']);
 				if ($statusOfMoving == 'notOk') {
 					echo 'cannot moving this request';
 				}
@@ -110,12 +110,12 @@
 				break;
 			case 'newRequest':
 				$newRequest = new Request(...)// construct $newRequest = object from $_POST[''] parametrs...
-				$statusOfAdd = $_SESSION['controller']->$controllerOfDispatcherRequest->addNewRequest($newRequest);
+				$statusOfAdd = $_SESSION['controller']->controllerOfDispatcherRequest->addNewRequest($newRequest);
 				if ($statusOfAdd == 'notOk') {
 					echo 'cannot add newRequest';
 				}
 				else if ($statusOfAdd == 'ok'){
-					$newRequestViewInHtml = $_SESSION['controller']->$controllerOfUserRequest->$viewOfUserRequest->buildHtmlOfNewRequest($newRequest);
+					$newRequestViewInHtml = $_SESSION['controller']->controllerOfUserRequest->viewOfUserRequest->buildHtmlOfNewRequest($newRequest);
 					echo $newRequestViewInHtml;
 				}
 				else {

@@ -1,0 +1,52 @@
+body {
+	background: #000;
+	color: #EEE;
+	font: normal 100% Segoe UI, Arial, sans-serif; 
+}
+
+#content {
+	position: absolute;
+	width: 500px;
+	height: 430px;
+	top: 50%;
+	left: 50%;
+    margin-top: -215px;
+	margin-left: -250px;
+}
+
+#image {
+	margin: 0 auto;
+	width: 221px;
+}
+
+#content p {
+	padding: 5px;
+	text-align: center;
+}
+
+#content form {
+	margin: 0 auto;
+	width: 50%;
+}
+#content form p {
+	margin: 0 auto;
+}
+
+#login {
+	padding: 5px;
+	padding-left: 24px;
+}
+
+#pass {
+	padding: 5px;
+	padding-left: 15px;
+}
+
+.darkness-field {
+	background: #aaa;
+}
+
+.inputLP {
+	border: 1px solid white;
+	border-radius: 3px;
+}
