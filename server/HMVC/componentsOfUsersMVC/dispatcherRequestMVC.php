@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 //1. HTML list af all users actual request = function of AJAX(_date)
 //2. Move request = function of AJAX(_acceptOrDenieVariable)

@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 
 //1. getIndividualShedule = function of AJAX (aud, week1, week2). return HTML of individual shedule of selected aud.
 
-require_once './HMVC/componentsOfUsersMVC/DateParaAudClass.php';
+require_once '../server/HMVC/componentsOfUsersMVC/DateParaAudClass.php';
 
 class ControllerOfIndividualShedule {
 	function __construct () {

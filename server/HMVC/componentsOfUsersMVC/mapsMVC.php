@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 //2. getFreeAuds = function of AJAX (date, pare). return new currentFreeAuds
 

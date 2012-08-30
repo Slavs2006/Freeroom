@@ -1,7 +1,7 @@
-﻿<?php
+<?php
 
 interface freeroomUser { 
-    public function createUserInterfaceInHtml( ); 
+    public function createUserInterfaceInHtml($_login); 
 } 
 
 ?>

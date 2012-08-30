@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 
-require_once './HMVC/usersMVC/freeroomUserInterface.php';
+require_once '../server/HMVC/usersMVC/freeroomUserInterface.php';
 
-require_once './HMVC/componentsOfUsersMVC/eventMVC.php';
-require_once './HMVC/componentsOfUsersMVC/dispatcherRequestMVC.php';
-require_once './HMVC/componentsOfUsersMVC/individualSheduleMVC.php';
+require_once '../server/HMVC/componentsOfUsersMVC/eventMVC.php';
+require_once '../server/HMVC/componentsOfUsersMVC/dispatcherRequestMVC.php';
+require_once '../server/HMVC/componentsOfUsersMVC/individualSheduleMVC.php';
 
 class ControllerOfDispatcher {
 	function __construct () {
@@ -35,9 +35,9 @@ class ViewOfDispatcher implements freeroomUser {
 	function ViewOfDispatcher () {
 		
 	}
-	public function createUserInterfaceInHtml () {
+	public function createUserInterfaceInHtml ($_login) {
 		// build all page whith meta-tags and necessary javascripts. Also use mapsView and userRequestView.
-		return $DispatcherViewInHtml;
+		return 'Вы самый что ни на есть диспетчер freeroom. Ликуйте. <form action = "../server/exit.php" method = "post"><input type = "submit" name = "sExit" value = "Выйти" id = "btnExit" ></form>';//$DispatcherViewInHtml;
 	}
 	
 	

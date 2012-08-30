@@ -1,0 +1,56 @@
+body {
+	background: #000;
+	color: #EEE;
+}
+
+div {
+	background: #666;
+	border: 1px solid white;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+#header {
+	height: 50px;
+}
+#header img {
+	float: left;
+	height: 50px;
+}
+#header form {
+	float: right;
+	margin-top: 7px;
+}
+#header p {
+	float: right;
+}
+
+#maps {
+	float: left;
+	width: 65%;
+}
+#floorSelector {
+	height: 50px;
+}
+#floorPlans {
+	height: 600px;
+}
+
+#rightBar {
+	margin-left: 65%;
+}
+#calendarAndTime {
+	height: 200px;
+}
+#searchOptions {
+	height: 350px;
+}
+#userOrders {
+	height: 250px;
+}
+
+#downhall {
+	clear: left;
+	height: 50px;
+}

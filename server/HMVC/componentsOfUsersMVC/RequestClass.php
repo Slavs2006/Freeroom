@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 class Request {
 	//maybe some constructor ?  from sqlQuery format convert... ? 

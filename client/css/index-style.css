@@ -27,6 +27,8 @@ body {
 #content form {
 	margin: 0 auto;
 	width: 50%;
+	background: #222;
+	border-radius: 3px;
 }
 #content form p {
 	margin: 0 auto;
@@ -49,4 +51,8 @@ body {
 .inputLP {
 	border: 1px solid white;
 	border-radius: 3px;
+}
+
+#errorPlace {
+	color: red;
 }

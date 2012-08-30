@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 //1. getAllActualRequest = function of AJAX (date). return HTML of actual request for this user.
 
@@ -6,7 +6,7 @@
 					// if OK also return HTML from server and call modelOfUserRequests.addNewRequest()
 					// else say some attention message "Your request is suck. try again.."
 
-require_once './HMVC/componentsOfUsersMVC/RequestClass.php';
+require_once '../server/HMVC/componentsOfUsersMVC/RequestClass.php';
 
 class ControllerOfUserRequest {
 	function __construct () {	

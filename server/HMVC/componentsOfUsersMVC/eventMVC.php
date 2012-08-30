@@ -1,9 +1,9 @@
-﻿<?php
+<?php
 
 //2. getEvent = function of AJAX (date, pare, aud, status). return HTML of event at selected day+pare
 
-require_once './HMVC/componentsOfUsersMVC/EventClass.php';
-require_once './connection.php';
+require_once '../server/HMVC/componentsOfUsersMVC/EventClass.php';
+require_once '../server/connectDB.php';
 
 class ControllerOfEvent {
 	function __construct () {
