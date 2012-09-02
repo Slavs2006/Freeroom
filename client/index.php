@@ -31,7 +31,7 @@
 	
 	if (!empty($_SESSION['controller'])) {	//	session started?
 		$controller = unserialize($_SESSION['controller']);
-		echo $controller->view->createUserInterfaceInHtml($_SESSION['login']);	//	yes. create and show interface.
+		echo $controller->createUserInterfaceInHtml($_SESSION['login']);	//	yes. create and show interface.
 	}
 	else {	//	no, session not started
 		if (!empty($_POST['login']) && !empty($_POST['pass'])) {	//	Get we some login and pass via POST?
@@ -165,7 +165,7 @@
 											echo 'Who are you?';	// ??????????????????????????????????
 											break;
 					}
-					echo $controller->view->createUserInterfaceInHtml($_SESSION['login']);
+					echo $controller->createUserInterfaceInHtml($_SESSION['login']);
 					$_SESSION['controller'] = serialize($controller);
 				}
 			}
@@ -173,7 +173,7 @@
 		else if (!empty($_POST['guest'])) {	//	No, login and pass not send, BUT was send guestChecker
 			$_SESSION['login'] = 'Гость';
 			$controller = new ControllerOfGuest;
-			echo $controller->view->createUserInterfaceInHtml($_SESSION['login']);
+			echo $controller->createUserInterfaceInHtml($_SESSION['login']);
 			$_SESSION['controller'] = serialize($controller);
 		}
 		else {	//	No, login and pass not send.

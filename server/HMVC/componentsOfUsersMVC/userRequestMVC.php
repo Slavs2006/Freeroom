@@ -10,21 +10,26 @@ require_once '../server/HMVC/componentsOfUsersMVC/RequestClass.php';
 
 class ControllerOfUserRequest {
 	function __construct () {	
-		$this->modelOfUserRequest = new ModelOfUserRequest;
-		$this->viewOfUserRequest = new ViewOfUserRequest;
+		$this->model = new ModelOfUserRequest;
+		$this->view = new ViewOfUserRequest;
 	}
 	
-	var $modelOfUserRequest;
-	var $viewOfUserRequest;
+	var $model;
+	var $view;
+	
+	public function createUserRequestInterfaceInHtml() {
+		$this->model->initActualUserRequests();
+		return $this->view->viewInHtml($this->model->arrOfActualRequests);
+	}
 }
 
 class ModelOfUserRequest {
 	function __construct () {
 	
 	}
-	function initActualUserRequests ($_date) {
-		//... use $_SESSION['login']
-		$this->arrOfActualRequests = $someArrOfAllActualRequest;// [0] => [RequestObj], [1] => [RequestObj], ... class Request in "userRequestMainMVC.php"
+	function initActualUserRequests () {
+		//... use $_SESSION['login'] and current date(to select only actual requests)
+		$this->arrOfActualRequests = 0;//$someArrOfAllActualRequest;// [0] => [RequestObj], [1] => [RequestObj], ... class Request in "userRequestMainMVC.php"
 	}
 	function addNewRequest ($_newRequest) {	//RequestObj
 		//... add new request in table of notCheckingRequests in DB 
@@ -39,9 +44,9 @@ class ViewOfUserRequest {
 	function __construct () {
 	
 	}
-	function buildHtmlRequestList ($_arrOfActualRequests) { // [0] => [RequestObj], [1] => [RequestObj], ... class Request in "userRequestMainMVC.php"
+	function viewInHtml ($_arrOfActualRequests) { // [0] => [RequestObj], [1] => [RequestObj], ... class Request in "userRequestMainMVC.php"
 		//...
-		return $viewOfActualRequestInHtml;
+		return 'пользовательский запрос 1, пользовательский запрос 2, ...';//$viewOfActualRequestInHtml;
 	}
 	function buildHtmlOfNewRequest ($_newRequest) {
 		//...

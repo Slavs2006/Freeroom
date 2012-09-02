@@ -7,12 +7,17 @@ require_once '../server/connectDB.php';
 
 class ControllerOfEvent {
 	function __construct () {
-		$this->modelOfEvent = new ModelOfEvent;
-		$this->viewOfEvent = new ViewOfEvent;
+		$this->model = new ModelOfEvent;
+		$this->view = new ViewOfEvent;
 	}
 	
-	var $modelOfEvent;
-	var $viewOfEvent;
+	var $model;
+	var $view;
+	
+	public function createEventInterfaceInHtml () {
+		
+		return $this->view->viewInHtml();
+	}
 }
 
 class ModelOfEvent {
@@ -85,7 +90,7 @@ class ViewOfEvent {
 	function __construct () {
 		
 	}
-	function buildHtmlView ($_eventObj) {//construct html of event
+	function viewInHtml ($_eventObj) {//construct html of event
 		$viewOfEventInHtml .= "<br>";
 		$viewOfEventInHtml .= "<br><table border style='color:white;width:50%;' cellpadding = '0' cellspacing = '0'>";
 		$viewOfEventInHtml .= "<tr>";

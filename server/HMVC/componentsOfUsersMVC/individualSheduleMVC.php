@@ -6,12 +6,17 @@ require_once '../server/HMVC/componentsOfUsersMVC/DateParaAudClass.php';
 
 class ControllerOfIndividualShedule {
 	function __construct () {
-		$this->modelOfIndividualShedule = new ModelOfIndividualShedule;
-		$this->viewOfIndividualShedule = new ViewOfIndividualShedule;
+		$this->model = new ModelOfIndividualShedule;
+		$this->view = new ViewOfIndividualShedule;
 	}
 
-	var $modelOfIndividualShedule;
-	var $viewOfIndividualShedule;
+	var $model;
+	var $view;
+	
+	public function createIndividualShedule($_aud, $_week1, $_week2) {
+		$this->model->initIndividualShedule($_aud, $_week1, $_week2);
+		return $this->view->viewInHtml($this->model->assArrayOfIndividualShedule);
+	}
 }
 
 class ModelOfIndividualShedule {
@@ -30,11 +35,7 @@ class ViewOfIndividualShedule {
 	function __construct () {
 	
 	}
-	function buildHtmlIndividualSheduleForUser ($_assArrayOfIndividualShedule) {
-		//...
-		return $htmlOfIndividualShedule;
-	}
-	function buildHtmlIndividualSheduleForGuest ($_assArrayOfIndividualShedule) {
+	function viewInHtml ($_assArrayOfIndividualShedule) {
 		//...
 		return $htmlOfIndividualShedule;
 	}

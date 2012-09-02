@@ -7,7 +7,7 @@ require_once '../server/HMVC/componentsOfUsersMVC/userRequestMVC.php';
 require_once '../server/HMVC/componentsOfUsersMVC/eventMVC.php';
 require_once '../server/HMVC/componentsOfUsersMVC/individualSheduleMVC.php';
 
-class ControllerOfSimpleUser {
+class ControllerOfSimpleUser implements freeroomUser {
 	function __construct() {
 		$this->view = new ViewOfSimpleUser;
 		$this->model = new ModelOfSimpleUser;
@@ -25,6 +25,12 @@ class ControllerOfSimpleUser {
 	var $controllerOfUserRequest;
 	var $controllerOfIndividualShedule;
 	var $controllerOfEvent;
+	
+	public function createUserInterfaceInHtml ($_login) {
+		$mapsI = $this->controllerOfMaps->createMapsInterfaceInHtml();
+		$userRequestI = $this->controllerOfUserRequest->createUserRequestInterfaceInHtml();
+		return $this->view->viewInHtml($_login, $mapsI, $userRequestI);
+	}
 }
 
 class ModelOfSimpleUser {
@@ -34,15 +40,13 @@ class ModelOfSimpleUser {
 	
 }
 
-class ViewOfSimpleUser implements freeroomUser {
+class ViewOfSimpleUser {
 	function __construct() {
 		
 	}
-	public function createUserInterfaceInHtml ($_login) {
-		// build all page whith meta-tags and necessary javascripts. Also use mapsView and userRequestView.
-		
-		return 
-		'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+	public function viewInHtml($_login, $_mapsI, $_userRequestI) {	// build all page whith meta-tags and necessary javascripts. Also use mapsView and userRequestView.
+		return '
+		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 		<html>
 		<head>
 		<title>freeroom IFMO</title>
@@ -58,6 +62,7 @@ class ViewOfSimpleUser implements freeroomUser {
 		<link type="text/css" href="jquery/css/custom-theme/jquery-ui-1.8.23.custom.css" rel="stylesheet" />
 		<script src = "./jquery/js/jquery-1.8.0.min.js"></script>
 		<script src = "./jquery/js/jquery-ui-1.8.23.custom.min.js"></script>
+		'. /* add js files of all modules */'
 		<script>
 			$(document).ready(function() {
 				$("#btnExit").button();
@@ -72,14 +77,7 @@ class ViewOfSimpleUser implements freeroomUser {
 				</form>
 				<p id = "userLogin">'.$_login.'</p>
 			</div>
-			<div id = "maps">
-				<div id = "floorSelector">
-					селектор этажей
-				</div>
-				<div id = "floorPlans">
-					сами карты
-				</div>
-			</div>
+			<div id = "maps">'.$_mapsI.'</div>
 			<div id = "rightBar">
 				<div id = "calendarAndTime">
 					календарь 
@@ -87,12 +85,19 @@ class ViewOfSimpleUser implements freeroomUser {
 				<div id = "searchOptions">
 					опции поиска
 				</div>
-				<div id = "userOrders">
-					брони пользователя
-				</div>
+				<div id = "_userRequest">'.$_userRequestI.'</div>
 			</div>
 			<div id = "downhall">
 				подвал с контактной инфой и копирайтами
+			</div>
+			<div id = "menuOfIndividualSheduleAndEvent">
+				<div id = "individualShedule">
+				</div>
+				<div id = "event">
+				</div>
+				<button>Заказать</button>
+			</div>
+			<div id = "requestInputMenu">
 			</div>
 		</body>
 		</html>';//$SimpleUserViewInHtml;

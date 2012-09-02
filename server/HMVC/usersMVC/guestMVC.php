@@ -6,7 +6,7 @@ require_once '../server/HMVC/componentsOfUsersMVC/mapsMVC.php';
 require_once '../server/HMVC/componentsOfUsersMVC/eventMVC.php';
 require_once '../server/HMVC/componentsOfUsersMVC/individualSheduleMVC.php';
 
-class ControllerOfGuest {
+class ControllerOfGuest implements freeroomUser {
 	function __construct () {
 		$this->model = new ModelOfGuest;
 		$this->view = new ViewOfGuest;
@@ -22,6 +22,11 @@ class ControllerOfGuest {
 	var $controllerOfMaps;
 	var $controllerOfIndividualShedule;
 	var $controllerOfEvent;
+	
+	public function createUserInterfaceInHtml ($_login) {
+		$mapsI = $this->controllerOfMaps->createMapsInterfaceInHtml();
+		return $this->view->viewInHtml($_login, $mapsI);
+	}
 }
 
 class ModelOfGuest {
@@ -31,14 +36,13 @@ class ModelOfGuest {
 	
 }
 
-class ViewOfGuest implements freeroomUser {
+class ViewOfGuest {
 	function __construct () {
 		
 	}
-	public function createUserInterfaceInHtml ($_login) {	//	build all page whith meta-tags and necessary javascripts. Also use viewOfMaps to build maps and floor selector
-		
+	public function viewInHtml ($_login, $_mapsI) {	//	build all page whith meta-tags and necessary javascripts. Also use viewOfMaps to build maps and floor selector
 		return 
-	'	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+		'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 		<html>
 		<head>
 		<title>freeroom IFMO</title>
@@ -69,12 +73,7 @@ class ViewOfGuest implements freeroomUser {
 				<p id = "userLogin">'.$_login.'</p>
 			</div>
 			<div id = "maps">
-				<div id = "floorSelector">
-					селектор этажей
-				</div>
-				<div id = "floorPlans">
-					сами карты
-				</div>
+				'.$_mapsI.'
 			</div>
 			<div id = "rightBar">
 				<div id = "calendarAndTime">
@@ -86,6 +85,12 @@ class ViewOfGuest implements freeroomUser {
 			</div>
 			<div id = "downhall">
 				подвал с контактной инфой и копирайтами
+			</div>
+			<div id = "menuOfIndividualSheduleAndEvent">
+				<div id = "individualShedule">
+				</div>
+				<div id = "event">
+				</div>
 			</div>
 		</body>
 		</html>';//$guestViewInHtml;

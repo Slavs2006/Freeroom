@@ -9,20 +9,25 @@ require_once 'RequestClass.php';
 
 class ControllerOfDispatcherRequest {
 	function __construct () {	
-		$this->modelOfDispatcherRequest = new ModelOfDispatcherRequest;
-		$this->viewOfDispatcherRequest = new ViewOfDispatcherRequest;
+		$this->model = new ModelOfDispatcherRequest;
+		$this->view = new ViewOfDispatcherRequest;
 	}
 	
-	var $modelOfDispatcherRequest;
-	var $viewOfDispatcherRequest;
+	var $model;
+	var $view;
+	
+	public function createDispatcherRequestInterfaceInHtml() {
+		$this->model->initActualRequestsOfAllUsers();
+		return $this->view->viewInHtml($this->model->$arrOfActualRequests);
+	}
 }
 
 class ModelOfDispatcherRequest {
 	function __construct () {
 	
 	}
-	function initActualRequestsOfAllUsers ($_date) {
-		//...
+	function initActualRequestsOfAllUsers () {
+		//...use current date to select only actual request
 		$this->arrOfActualRequestsOfAllUsers = $someArrOfAllActualRequest;// [0] => [RequestObj], [1] => [RequestObj], ... class Request in "userRequestMainMVC.php"
 	}
 	function moveRequest($idOfRequest, $directionOfMoving) {
@@ -41,7 +46,7 @@ class ViewOfDispatcherRequest {
 	function __construct () {
 	
 	}
-	function buildHtmlRequestList ($_arrOfActualRequests) { // [0] => [RequestObj], [1] => [RequestObj], ...
+	function viewInHtml ($_arrOfActualRequests) { // [0] => [RequestObj], [1] => [RequestObj], ...
 		//...
 		return $viewOfActualRequestInHtml;
 	}	
