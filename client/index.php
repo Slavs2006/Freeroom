@@ -12,11 +12,7 @@
 		}
 	}
 	function authorization($_login, $_pass) {	//	search in DB user with login == $login and pass == md5($pass). 
-		$Link = mysql_connect('localhost','root','');
-		@mysql_query("SET NAMES 'cp1251'", $Link);
-		if ($Link) {
-			mysql_select_db('univercity');
-		}
+		require './../server/link.php';
 		$_passMD5 = md5($_pass); 
 		$query = mysql_query("SELECT * FROM users WHERE login='".$_login."' AND password = '".$_passMD5."'");
 		$f = mysql_fetch_assoc($query);

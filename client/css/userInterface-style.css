@@ -23,6 +23,7 @@ body {
 #calendarAndTime {
 	
 }
+
 #searchOptions {
 	margin-top: 5px;
 }
@@ -38,6 +39,7 @@ body {
 }
 #floorPlans {
 	position: relative;
+	background: #888;
 }
 .imap {
 	position: absolute;

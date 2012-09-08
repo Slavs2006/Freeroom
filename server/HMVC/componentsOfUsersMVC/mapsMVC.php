@@ -34,11 +34,7 @@ class ModelOfMaps {
 											"6 этаж" => "../server/maps/IFMO/kronverk/floor_6.svg" );
 	}
 	function getFreeAuds ($_date, $_pare, $_parity) { // $_date - fulldate
-		$Link = mysql_connect('localhost','root','');
-		mysql_query("SET NAMES 'cp1251'", $Link);
-		if ($Link) {
-			mysql_select_db('univercity');
-		}
+		require './../server/link.php';
 		// We determine the name of the day of the week, 
 		$listOfAud = "";
 		$i = count($this->ArrayPathToFloorSvg);

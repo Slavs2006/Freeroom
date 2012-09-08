@@ -1,12 +1,7 @@
 <?php
-function openLink() {
-	$Link = mysql_connect('localhost','guest','');
+	$Link = mysql_connect('localhost','root','');
 	@mysql_query("SET NAMES 'cp1251'", $Link);
 	if ($Link) {
 		mysql_select_db('univercity');
 	}
-}
-function closeLink() {
-	
-}	
 ?>

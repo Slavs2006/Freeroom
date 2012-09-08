@@ -2,8 +2,7 @@
 
 //2. getEvent = function of AJAX (date, pare, aud, status). return HTML of event at selected day+pare
 
-require_once '../server/HMVC/componentsOfUsersMVC/EventClass.php';
-require_once '../server/connectDB.php';
+require_once './../server/HMVC/componentsOfUsersMVC/EventClass.php';
 
 class ControllerOfEvent {
 	function __construct () {
@@ -30,9 +29,7 @@ class ModelOfEvent {
 	}
 	function getEvent($_date, $_pare, $_aud, $_status) {
 		$findedEvent = new Event;
-		
-		openConnection();
-		
+		require './../server/link.php';
 		$queryAuditoryIdSelect = mysql_query("SELECT id_aud FROM auditory WHERE nummer_aud='".$_aud."' and id_adress='1'");
 		$idAuditory = mysql_fetch_assoc($query);
 		if (!$idAuditory) {
