@@ -6,7 +6,6 @@ require_once '../server/HMVC/componentsOfUsersMVC/mapsMVC.php';
 require_once '../server/HMVC/componentsOfUsersMVC/userRequestMVC.php';
 require_once '../server/HMVC/componentsOfUsersMVC/eventMVC.php';
 require_once '../server/HMVC/componentsOfUsersMVC/individualSheduleMVC.php';
-require_once '../server/HMVC/componentsOfUsersMVC/DateParaAudClass.php';
 
 class ControllerOfSimpleUser implements freeroomUser {
 	function __construct() {
@@ -27,8 +26,8 @@ class ControllerOfSimpleUser implements freeroomUser {
 	var $controllerOfIndividualShedule;
 	var $controllerOfEvent;
 	
-	public function createUserInterfaceInHtml ($_login, $_floor = 0) {
-		$mapsI = $this->controllerOfMaps->createMapsInterfaceInHtml($_floor);
+	public function createUserInterfaceInHtml ($_login) {
+		$mapsI = $this->controllerOfMaps->createMapsInterfaceInHtml();
 		$userRequestI = $this->controllerOfUserRequest->createUserRequestInterfaceInHtml();
 		return $this->view->viewInHtml($_login, $mapsI, $userRequestI);
 	}

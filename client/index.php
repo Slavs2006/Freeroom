@@ -12,7 +12,7 @@
 		}
 	}
 	function authorization($_login, $_pass) {	//	search in DB user with login == $login and pass == md5($pass). 
-		$Link = mysql_connect('localhost','root','cnfhdfhc3');
+		$Link = mysql_connect('localhost','root','');
 		@mysql_query("SET NAMES 'cp1251'", $Link);
 		if ($Link) {
 			mysql_select_db('univercity');
@@ -172,6 +172,7 @@
 		}
 		else if (!empty($_POST['guest'])) {	//	No, login and pass not send, BUT was send guestChecker
 			$_SESSION['login'] = 'Гость';
+			$_SESSION['status'] = 'guest';
 			$controller = new ControllerOfGuest;
 			echo $controller->createUserInterfaceInHtml($_SESSION['login']);
 			$_SESSION['controller'] = serialize($controller);
